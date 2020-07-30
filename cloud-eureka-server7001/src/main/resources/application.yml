@@ -9,3 +9,6 @@ eureka:
     fetch-registry: false #不需要检索服务
     service-url:
       defaultZone: http://eureka7002.com:7002/eureka/
+#  server:
+#    enable-self-preservation: false #关闭eureka自我保护机制
+#    eviction-interval-timer-in-ms: 2000 #设置发送心跳时间间隔

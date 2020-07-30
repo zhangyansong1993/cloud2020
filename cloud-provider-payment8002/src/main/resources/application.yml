@@ -1,9 +1,9 @@
 server:
-  port: 8001
+  port: 8002
 
 spring:
   application:
-    name: cloud-payment-service #微服务名称
+    name: cloud-payment-service
   datasource:
       type: com.alibaba.druid.pool.DruidDataSource
       driver-class-name: com.mysql.jdbc.Driver
@@ -19,15 +19,12 @@ mybatis:
 eureka:
   instance:
     prefer-ip-address: true
-    instance-id: payment8001
-#    lease-expiration-duration-in-seconds: 20 #eureka收到最后一次心跳等待时间间隔，超时剔除微服务
-#    lease-renewal-interval-in-seconds: 10 #向eureka发送心跳时间间隔默认30m
+    instance-id: payment8002
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
 #       defaultZone: http://192.168.0.42:7001/eureka/
         defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
-
 
 

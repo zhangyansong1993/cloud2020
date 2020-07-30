@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class ApplicationContextConfig {
 
-    //@LoadBalanced
+    @LoadBalanced
     @Bean
     public RestTemplate myRestTemplate() {
         return new RestTemplate();
