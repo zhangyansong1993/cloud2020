@@ -8,14 +8,18 @@
         <outputRelativeToContentRoot value="true" />
         <module name="cloud-eureka-server7002" />
         <module name="cloudapicommons" />
+        <module name="cloudconfigcenter3344" />
+        <module name="cloudconsumerfeignorder80" />
         <module name="cloudconsumerorder80" />
         <module name="cloudeurekaserver7001" />
+        <module name="cloudgatewaygateway9527" />
         <module name="cloudproviderpayment8001" />
         <module name="cloudproviderpayment8002" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="cloud-api-commons" target="1.8" />
+      <module name="cloud2020" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

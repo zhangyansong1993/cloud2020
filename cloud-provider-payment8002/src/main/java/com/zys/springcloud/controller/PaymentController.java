@@ -39,6 +39,10 @@ public class PaymentController {
         } else {
             return new CommonResult(500, "查询失败：" + id+","+port, null);
         }
+    }
 
+    @GetMapping(value = "lb")
+    public String getPort(){
+        return port;
     }
 }

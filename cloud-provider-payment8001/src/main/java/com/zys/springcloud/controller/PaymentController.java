@@ -1,8 +1,13 @@
 package com.zys.springcloud.controller;
 
 
+import cn.hutool.core.util.IdUtil;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCollapser;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.zys.springcloud.entities.CommonResult;
 import com.zys.springcloud.entities.Payment;
+import com.zys.springcloud.service.HystrixService;
 import com.zys.springcloud.service.PaymentService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,8 +31,11 @@ public class PaymentController {
     @Autowired
     private DiscoveryClient discoveryClient;
 
+    @Autowired
+    private HystrixService hystrixService;
+
     @PostMapping(value = "/create")
-    private CommonResult create(@RequestBody Payment payment) {
+    public CommonResult create(@RequestBody Payment payment) {
         int result = paymentService.create(payment);
         log.info("插入结果：" + result);
         if (result > 0) {
@@ -38,7 +46,7 @@ public class PaymentController {
     }
 
     @GetMapping(value = "/get/{id}")
-    private CommonResult getPaymentById(@PathVariable("id") Long id) {
+    public CommonResult getPaymentById(@PathVariable("id") Long id) {
         Payment payment = paymentService.getPaymentById(id);
         log.info("查询结果" + payment);
         if (payment != null) {
@@ -49,7 +57,11 @@ public class PaymentController {
     }
 
 
-
+    /**
+     * 服务相关信息
+     *
+     * @return
+     */
     @GetMapping(value = "/discovery")
     public Object discovery() {
 
@@ -59,8 +71,48 @@ public class PaymentController {
         }
         List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
         for (ServiceInstance instance : instances) {
-            log.info(instance.getServiceId()+"\t"+instance.getHost()+"\t"+instance.getPort()+"\t"+instance.getUri());
+            log.info(instance.getServiceId() + "\t" + instance.getHost() + "\t" + instance.getPort() + "\t" + instance.getUri());
         }
         return this.discoveryClient;
+    }
+
+    /**
+     * 自定义负载均衡策略
+     *
+     * @return
+     */
+    @GetMapping(value = "/lb")
+    public String getPort() {
+        return port;
+    }
+
+    /**
+     * hystrix 服务降级
+     *
+     * @return
+     */
+    @GetMapping(value = "/hystrix")
+    public String hystrixTest() {
+        return hystrixService.test();
+    }
+
+
+    /**
+     * hystrix 服务熔断
+     * @param id
+     * @return
+     */
+
+    public String circuiBreaker(@PathVariable("id") Integer id) {
+        if (id < 0) {
+            throw new RuntimeException("id不能为负数");
+        }
+        String num = IdUtil.simpleUUID();
+        return num;
+    }
+
+    public String circuiBreaker_fallback(@PathVariable("id") Integer id) {
+
+        return "id不能为负数，请输入整数";
     }
 }
