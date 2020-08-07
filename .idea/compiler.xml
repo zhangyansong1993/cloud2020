@@ -19,7 +19,6 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="cloud-api-commons" target="1.8" />
-      <module name="cloud2020" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
