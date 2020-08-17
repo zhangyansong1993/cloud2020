@@ -7,6 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="cloud-eureka-server7002" />
+        <module name="cloudalibabaconfignacosclient3377" />
+        <module name="cloudalibabaconsumernacosorder83" />
+        <module name="cloudalibabaproviderpayment9001" />
+        <module name="cloudalibabasentinelservice8401" />
         <module name="cloudapicommons" />
         <module name="cloudconfigcenter3344" />
         <module name="cloudconsumerfeignorder80" />

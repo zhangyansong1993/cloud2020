@@ -10,13 +10,22 @@ spring:
       name: config
       profile: dev
       uri: http://localhost:3344
-
+  rabbitmq:
+      host: 192.168.109.129
+      port: 5672
+      username: guest
+      password: guest
 eureka:
   client:
     service-url:
        defaultZone: http://192.168.0.42:7001/eureka/
+  instance:
+     prefer-ip-address: true
+     instance-id: config-client3355
+
 management:
   endpoints:
     web:
       exposure:
         include: "*"
+
