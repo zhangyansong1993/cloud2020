@@ -6,9 +6,9 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.109.129:1111
+        server-addr: 192.168.154.110:8848
       config:
-        server-addr: 192.168.109.129:1111
+        server-addr: 192.168.154.110:8848
         file-extension: yaml
         group: DEV_GROUP    #默认组不用配置
 #        namespace: 7f291aa7-2cb8-4f5e-bf36-2d679f217870  #命名空间id 默认的public不用配置

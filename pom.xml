@@ -21,6 +21,8 @@
         <module>cloudalibaba-consumer-nacos-order83</module>
         <module>cloudalibaba-config-nacos-client3377</module>
         <module>cloudalibaba-sentinel-service8401</module>
+        <module>springcloud-gateway-nacos</module>
+        <module>dome</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -41,5 +41,14 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <build>
+        <finalName>cloud-gateway-gateway9527</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

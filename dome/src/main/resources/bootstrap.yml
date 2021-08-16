@@ -1,0 +1,35 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: demo
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.154.110:8848
+      config:
+        server-addr: 192.168.154.110:8848
+        file-extension: yaml #指定配置文件格式
+        namespace: 628533f7-3f2a-432e-a41c-a8b1145bcd17 #nacos 命名空间，使用其他命名空间加此配置
+        group: DEV_GROUP #nacos 配置文件分组管理，默认分组不用加此配置
+    sentinel: #sentinel服务需要和微服务程序在同一个服务器,实时监测才有图表显示
+      transport:
+        dashboard: 172.30.129.162:8080 #sentinel 地址
+        port: 8719 #配置端口 如果端口被占用开始+1扫描，直至找到未占用端口
+      datasource:
+        ds1:  #sentinel 的持久化需要依赖那nacos的config配置
+          nacos:
+            server-addr: 192.168.154.110:8848
+            dataId: demo #跟应用名保持一致,在nacos上创建demo为名的配置文件,用于保存sentinel的规则配置,用于持久化
+            groupId: DEFAULT_GROUP #组
+            data-type: json #文件类型
+            rule-type: flow
+
+
+#sentinel图形化监控?
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

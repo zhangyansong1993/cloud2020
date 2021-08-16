@@ -74,5 +74,13 @@
             <artifactId>springfox-swagger-ui</artifactId>
         </dependency>
     </dependencies>
-
+    <build>
+        <finalName>cloud-provider-payment8001</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
