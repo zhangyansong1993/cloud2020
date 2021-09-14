@@ -4,11 +4,17 @@ server:
 spring:
   application:
     name: demo
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.154.128:3306/test
+    username: root
+    password: 123456
   cloud:
-    nacos:
+    nacos: #注册中心
       discovery:
         server-addr: 192.168.154.110:8848
-      config:
+      config: #配置中心
         server-addr: 192.168.154.110:8848
         file-extension: yaml #指定配置文件格式
         namespace: 628533f7-3f2a-432e-a41c-a8b1145bcd17 #nacos 命名空间，使用其他命名空间加此配置
@@ -26,10 +32,13 @@ spring:
             data-type: json #文件类型
             rule-type: flow
 
-
 #sentinel图形化监控?
 management:
   endpoints:
     web:
       exposure:
         include: '*'
+
+feign:
+  sentinel:
+    enabled: true #开启sentinel对feign的支持
