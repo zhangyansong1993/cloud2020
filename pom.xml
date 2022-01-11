@@ -6,7 +6,12 @@
 
     <groupId>com.zys.springcloud</groupId>
     <artifactId>cloud2020</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
+    <!--    <packaging>pom</packaging>声明此工程为pom，只用来做工程管理，默认jar-->
+    <packaging>pom</packaging>
+
+
+    <!--    <modules> 管理的工程列表-->
     <modules>
         <module>cloud-provider-payment8001</module>
         <module>cloud-consumer-order80</module>
@@ -24,7 +29,6 @@
         <module>springcloud-gateway-nacos</module>
         <module>dome</module>
     </modules>
-    <packaging>pom</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -39,6 +43,8 @@
         <swagger2.version>2.7.0</swagger2.version>
         <redis.version>3.7.0</redis.version>
     </properties>
+
+    <!--    <dependencyManagement>管理工程声明所有依赖，子工程直接引用不用定义版本号-->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -111,7 +117,8 @@
     </dependencyManagement>
 
     <build>
-        <finalName>cloud2020</finalName>
+<!--        管理工程不要声明打包名称，否则会影响子工程，需要子工程添加此配置<finalName>cloud2020</finalName>-->
+<!--        管理工程配置打包插件后子工程不需要再配置打包插件，也可管理工程不配置子工程配置打包插件，同时设置以子工程配置优先</finalName>-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
