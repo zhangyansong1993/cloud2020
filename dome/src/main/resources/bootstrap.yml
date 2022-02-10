@@ -11,6 +11,8 @@ spring:
     username: root
     password: 123456
   cloud:
+#    inetutils:
+#      preferred-networks: 172 #多网卡 指定使用某ip 匹配前缀
     nacos: #注册中心
       discovery:
         server-addr: 192.168.154.110:8848
